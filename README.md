@@ -1,2 +1,2 @@
 # SpaceTrader-App
- Python GUI app utilizing SpaceT
+ Python GUI app utilizing SpaceTraders API
