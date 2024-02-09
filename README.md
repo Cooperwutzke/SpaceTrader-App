@@ -14,18 +14,38 @@
  This puts the resposibility on programmers to build their own user interfaces, bots, or really 
  define how they want to play the game. You can go as complex or simple as you want; one could choose a fully automated fleet with financials, goals, decisions, all made autonomously! Or play more manually through a terminal or basic GUI. It's up to you!</p>
 
- <table>
+ <table width=90%>
     <tr>
-        <th>Section 1</th>
-        <th>Section 2</th>
-        <th>Section 3</th>
+        <th>Game start</th>
+        <th>Factions</th>
+        <th>Contracts</th>
+        <th>Navigation</th>
+        <th>Ship Management</th>
     </tr>
-        <td>Sec1 data</td>
-        <td>Sec2 data</td>
-        <td>Sec3 data</td>
+        <td>Create New Agent</td>
+        <td>View Factions</td>
+        <td>View Contracts</td>
+        <td>Orbiting and Docking</td>
+        <td>Find Shipyard/Purchase Ship</td>
     <tr>
-        <td>Sec1 data</td>
-        <td>Sec2 data</td>
-        <td>Sec3 data</td>
+        <td>Login with access token</td>
+        <td>Accept Faction Contract *WIP*</td>
+        <td>Accept Contract</td>
+        <td>Flight mode</td>
+        <td>Surveying</td>
+    </tr>
+    <tr>
+        <td>View Debug Log</td>
+        <td>View MY Faction Rep</td>
+        <td>******</td>
+        <td>Waypoint Navigation</td>
+        <td>Extracting Resources</td>
+    </tr>
+    <tr>
+        <td>View starting location</td>
+        <td>******</td>
+        <td>******</td>
+        <td>Warping, Jumping, and Gates</td>
+        <td>View Waypoint Traits</td>
     </tr>
  </table>
