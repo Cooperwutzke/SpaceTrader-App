@@ -55,3 +55,6 @@
     <td>Sell Goods</td>
 </tr>
 </table>
+
+<h3>First Idea for GUI layout</h3>
+<embed src="SpaceTrader-GUI_01.pdf" type="application/pdf" width="90%" height="40%"/>
