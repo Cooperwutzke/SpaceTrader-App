@@ -56,5 +56,5 @@
 </tr>
 </table>
 
-<h3>First Idea for GUI layout</h3>
-<img src="SpaceTrader-GUI_01.pdf" width="90%" height="600px"></img>
+<h3>GUI layout Ideas</h3>
+<a href="SpaceTrader-GUI_01.pdf">1st Iter</a>
