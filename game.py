@@ -5,7 +5,7 @@ import logging
 import requests
 import json
 
-logging.basicConfig(filename='history.log', encoding='utf-8', format='%(asctime)s | %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+#logging.basicConfig(filename='history.log', encoding='utf-8', format='%(asctime)s | %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 def newagent(callsign, faction):
     newagent_request = requests.post(url='https://api.spacetraders.io/v2/register',
