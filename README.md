@@ -42,10 +42,17 @@
         <td>Extracting Resources</td>
     </tr>
     <tr>
-        <td>View starting location</td>
+        <td>******</td>
+        <td>******</td>
+        <td>******</td>
+        <td>View Waypoint Traits</td>
+        <td>List Ship Cargo</td>
+    </tr>
+    <tr>
+        <td>******</td>
         <td>******</td>
         <td>******</td>
         <td>Warping, Jumping, and Gates</td>
-        <td>View Waypoint Traits</td>
+        <td>Sell Goods</td>
     </tr>
  </table>
