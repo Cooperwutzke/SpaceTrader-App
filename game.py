@@ -1,4 +1,5 @@
 # Cooper W | Spacetraders API
+# Game Start Logic
 # https://docs.spacetraders.io/
 
 import logging
