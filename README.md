@@ -1,7 +1,7 @@
 <h1>Python GUI app utilizing SpaceTraders API<h1>
 <h2>To-Do List<h2>
 <ul>
- <li>Study SpaceTraders API for all possible actions</li>
+ <li><s>Study SpaceTraders API for all possible actions</s></li>
  <li>Create User Stories documenting possible player choices</li>
  <li>List functions necessary to complete each user story</li>
  <li>Write test functions that operate with no GUI</li>
