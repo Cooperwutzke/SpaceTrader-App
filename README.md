@@ -57,4 +57,4 @@
 </table>
 
 <h3>First Idea for GUI layout</h3>
-<object data="SpaceTrader-GUI_01.pdf" width="90%" height="600px"></object>
+<img src="SpaceTrader-GUI_01.pdf" width="90%" height="600px"></img>
