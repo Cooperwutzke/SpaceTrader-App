@@ -22,18 +22,7 @@ def newagent(callsign, faction):
     print("Agent File Created: {file}")
 
 def gamelogin(access_token):
-
     logging.debug('Successful Login: %s', access_token)
     print('Successful Login: %s', access_token)
-
-
-def get_factions():
-    factions = requests.get('https://api.spacetraders.io/v2/factions')
-    factions_json = factions.json()
-    factions_str = json.dumps(factions_json, indent=4)
-    print(factions_str)
-    return factions_json
-
-get_factions()
 
         
