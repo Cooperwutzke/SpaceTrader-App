@@ -22,7 +22,7 @@
     <th>Ship Management</th>
 </tr>
     <td><s>Create New Agent</s></td>
-    <td>View Factions</td>
+    <td><s>View Factions</s></td>
     <td>View Contracts</td>
     <td>Orbiting and Docking</td>
     <td>Find Shipyard/Purchase Ship</td>
