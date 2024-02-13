@@ -1,1 +1,3 @@
 /venv/
+*_data.json
+!park_data.json

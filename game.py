@@ -2,8 +2,8 @@
 # Game Start Logic
 # https://docs.spacetraders.io/
 
-# MOCK SERVER - This way we don't register agents till we are ready to play
-# https://stoplight.io/mocks/spacetraders/spacetraders/96627693/register
+# WE ARE ON LIVE SERVER NOW
+# Agent park is our test dummy, he may be ruined
  
 
 import logging
@@ -11,12 +11,12 @@ import requests
 import json
 import faction
 
-logging.basicConfig(filename='history.log', encoding='utf-8', format='%(asctime)s | %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+logging.basicConfig(filename="history.log", encoding="utf-8", format="%(asctime)s | %(levelname)s: %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.INFO)
 current_player = {}
 
 #View some global element such as announcements, server reset dates, player count, and leaderboards
 def get_gameinfo():
-    gameinfo_request = requests.get(url='https://stoplight.io/mocks/spacetraders/spacetraders/96627693/')
+    gameinfo_request = requests.get(url="https://stoplight.io/mocks/spacetraders/spacetraders/96627693/")
     gameinfo_response = gameinfo_request.json()
     return gameinfo_response
 
@@ -35,37 +35,46 @@ def get_agentcount():
 
 
 def post_newagent(callsign, faction):
-    newagent_request = requests.post(url='https://stoplight.io/mocks/spacetraders/spacetraders/96627693/register',
-                                     headers='Content-Type: application/json',
-                                     json={'symbol': callsign, 'faction': faction})
-    newagent_response = newagent_request.json()
-    print(json.dumps(newagent_response))
+    callsign_str = str.upper(callsign)
+    faction_str = str.upper(faction)
+    payload = {'symbol': "%s" % callsign_str, 'faction': "%s" % faction_str}
+    newagent_response = requests.post(url="https://api.spacetraders.io/v2/register",
+                                     headers={'Content-Type': "application/json"},
+                                     json=payload)
+    print(newagent_response.status_code)
+    print(newagent_response.content)
+    newagent_json = newagent_response.json()
 
-    with open('{callsign}_data.json', 'w') as file:
-        json.dumps(newagent_response, file, indent=4)
+    filename = "%s_data.json" % callsign 
+    with open(filename, "w") as file:
+        json.dump(newagent_json, file)
 
-    logging.info('Agent File Created: {file}')
+    logging.info("Agent File Created: %s" % filename)
 
 # Logging in is simply selecting which access token all of our functions will target
 def get_myagent(access_token):
-    myagent_request = requests.get(url='https://stoplight.io/mocks/spacetraders/spacetraders/96627693/my/agent',
-                                   headers='Authorization: {access_token}')
+    myagent_request = requests.get(url="https://api.spacetraders.io/v2/my/agent",
+                                   headers={"Accept": "application/json", 
+                                            "Authorization": "%s" % access_token}) 
     try:
         myagent_json = json.loads(myagent_request)
     except ValueError as e:
-        logging.debug('Invalid login token: %s', access_token)
-    logging.info('Successful Login: %s', access_token)
-    print('Successful Login: %s', access_token)
+        logging.debug("Invalid login token: %s", access_token)
+    logging.info("Successful Login: %s", access_token)
+    print("Successful Login: %s", access_token)
     return myagent_json
 
 def test_game():
-    print('Enter new agent callsign: ')
+    print("Enter new agent callsign: ")
     callsign_str = str(input())
     print(callsign_str)
-    print('Choose a faction: ')
-    selected_factions = faction.filter_factions('name')
+    print("Choose a faction: ")
+    selected_factions = faction.filter_factions("symbol")
+    print("SELECTED FACTIONS: \n\n")
     print(selected_factions)
     faction_str = str(input())
-    print('%s', faction_str)
+    print(faction_str)
+    post_newagent(callsign_str, faction_str)
+
 
 test_game()
