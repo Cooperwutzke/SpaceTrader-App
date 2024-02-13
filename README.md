@@ -27,7 +27,7 @@
     <td>Orbiting and Docking</td>
     <td>Find Shipyard/Purchase Ship</td>
 <tr>
-    <td>Login with access token</td>
+    <td><s>Login with access token</s></td>
     <td>Accept Faction Contract *WIP*</td>
     <td>Accept Contract</td>
     <td>Flight mode</td>

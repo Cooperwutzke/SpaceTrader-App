@@ -53,18 +53,19 @@ def post_newagent(callsign, faction):
 
 # Logging in is simply selecting which access token all of our functions will target
 def get_myagent(access_token):
-    myagent_request = requests.get(url="https://api.spacetraders.io/v2/my/agent",
+    myagent_response = requests.get(url="https://api.spacetraders.io/v2/my/agent",
                                    headers={"Accept": "application/json", 
-                                            "Authorization": "%s" % access_token}) 
+                                            "Authorization": "Bearer %s" % access_token}) 
+    print(myagent_response.content)
     try:
-        myagent_json = json.loads(myagent_request)
+        myagent_json = myagent_response.json()
     except ValueError as e:
-        logging.debug("Invalid login token: %s", access_token)
-    logging.info("Successful Login: %s", access_token)
-    print("Successful Login: %s", access_token)
+        logging.debug("Invalid login token: %s" % access_token)
+    logging.info("Successful Login: %s" % access_token)
+    print("Successful Login: %s" % access_token)
     return myagent_json
 
-def test_game():
+def test_createagent():
     print("Enter new agent callsign: ")
     callsign_str = str(input())
     print(callsign_str)
@@ -76,5 +77,9 @@ def test_game():
     print(faction_str)
     post_newagent(callsign_str, faction_str)
 
+def test_login():
+    parks_access_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiUEFSSyIsInZlcnNpb24iOiJ2Mi4xLjUiLCJyZXNldF9kYXRlIjoiMjAyNC0wMi0xMSIsImlhdCI6MTcwNzg1ODg1Mywic3ViIjoiYWdlbnQtdG9rZW4ifQ.nVm-QYZ9D8KcEh6Tt5tLRj1htH0mzXCpxSoREKrI3y9tan5zQ8u2AxfUl1ajfeAYsc0jYe-qkZy5-OB4biz5N4aShrtvYGUQFIPD5f5SD11oQ0AVwyGctyWdJaG6q_UZgpoM1lVWkfWcKUuUpP01EoTxIQoganLPEwTqDalb4ddTW-EftHzHMSxoHoEGsMe-8dwgut6p7QvWNmlsDhE5h-UDsZ7arJVsFdkR84pZiY-ipOCsMlAY4MsZy_t_iXhWlIStupO4W9GWhAbKtYbr85yorT3X1xm9XDK2_3jIj2_RshsL2S8Ad6OTyqkUmRgqj77LtIyShVRoDYxF7KlqAQ"
+    myagent_json = get_myagent(parks_access_token)
+    print(json.dumps(myagent_json))
 
-test_game()
+test_login()
