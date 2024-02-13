@@ -10,7 +10,7 @@
 <h3>About the App</h3>
 <a href="https://docs.spacetraders.io/">SpaceTraders API</a>
 <p>SpaceTraders is a programmable fleet-management game that is played through a headless API. 
- This puts the resposibility on programmers to build their own user interfaces, bots, or really 
+ This puts the responsibility on programmers to build their own user interfaces, bots, or really 
  define how they want to play the game. You can go as complex or simple as you want; one could choose a fully automated fleet with financials, goals, decisions, all made autonomously! Or play more manually through a terminal or basic GUI. It's up to you!</p>
 
 <table width=90%>
