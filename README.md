@@ -23,13 +23,13 @@
 </tr>
     <td><s>Create New Agent</s></td>
     <td><s>View Factions</s></td>
-    <td>View Contracts</td>
+    <td>View My Contracts</td>
     <td>Orbiting and Docking</td>
     <td>Find Shipyard/Purchase Ship</td>
 <tr>
     <td><s>Login with access token</s></td>
-    <td>Accept Faction Contract *WIP*</td>
-    <td>Accept Contract</td>
+    <td>Accept Faction Contract *API WIP*</td>
+    <td>Accept Offered Contract</td>
     <td>Flight mode</td>
     <td>Surveying</td>
 </tr>
