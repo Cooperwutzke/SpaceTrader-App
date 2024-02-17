@@ -44,7 +44,18 @@ def get_ship_cooldown(ship_symbol, access_token):
         logging.debug("Failed to get ship cooldown: %s | (status code %s)" % ship_symbol, response.status_code)
         return None
     
-#def get_ship_mounts(ship_symbol, access_token):
+def get_ship_mounts(ship_symbol, access_token):
+    url = f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/mounts"
+    headers = {"Authorization": "Bearer %s" % access_token}
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Failed to get ship mounts: %s | (status code %s)" % ship_symbol, response.status_code)
+        logging.debug("Failed to get ship mounts: %s | (status code %s)" % ship_symbol, response.status_code)
+        return None
+
 #def install_ship_mounts(ship_symbol, access_token):
 #def remove_ship_mounts(ship_symbol, access_token):
     
