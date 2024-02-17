@@ -10,13 +10,15 @@ import logging
 import requests
 import json
 import faction
+import contracts
+import ship
 
 logging.basicConfig(filename="history.log", encoding="utf-8", format="%(asctime)s | %(levelname)s: %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.INFO)
-current_player = {}
+current_player_token = {}
 
 #View some global element such as announcements, server reset dates, player count, and leaderboards
 def get_gameinfo():
-    gameinfo_request = requests.get(url="https://stoplight.io/mocks/spacetraders/spacetraders/96627693/")
+    gameinfo_request = requests.get(url="https://api.spacetraders.io/v2/")
     gameinfo_response = gameinfo_request.json()
     return gameinfo_response
 
@@ -61,8 +63,8 @@ def get_myagent(access_token):
         myagent_json = myagent_response.json()
     except ValueError as e:
         logging.debug("Invalid login token: %s" % access_token)
-    logging.info("Successful Login: %s" % access_token)
-    print("Successful Login: %s" % access_token)
+    logging.info("Successful Login Token Check: %s" % access_token)
+    print("Successful Login Token Check: %s" % access_token)
     return myagent_json
 
 def test_createagent():
@@ -80,6 +82,10 @@ def test_createagent():
 def test_login():
     parks_access_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiUEFSSyIsInZlcnNpb24iOiJ2Mi4xLjUiLCJyZXNldF9kYXRlIjoiMjAyNC0wMi0xMSIsImlhdCI6MTcwNzg1ODg1Mywic3ViIjoiYWdlbnQtdG9rZW4ifQ.nVm-QYZ9D8KcEh6Tt5tLRj1htH0mzXCpxSoREKrI3y9tan5zQ8u2AxfUl1ajfeAYsc0jYe-qkZy5-OB4biz5N4aShrtvYGUQFIPD5f5SD11oQ0AVwyGctyWdJaG6q_UZgpoM1lVWkfWcKUuUpP01EoTxIQoganLPEwTqDalb4ddTW-EftHzHMSxoHoEGsMe-8dwgut6p7QvWNmlsDhE5h-UDsZ7arJVsFdkR84pZiY-ipOCsMlAY4MsZy_t_iXhWlIStupO4W9GWhAbKtYbr85yorT3X1xm9XDK2_3jIj2_RshsL2S8Ad6OTyqkUmRgqj77LtIyShVRoDYxF7KlqAQ"
     myagent_json = get_myagent(parks_access_token)
+    contracts_json = contracts.get_my_contracts(parks_access_token)
+    ships_json = ship.get_my_ships(parks_access_token)
     print(json.dumps(myagent_json))
+    print(json.dumps(contracts_json))
+    print(json.dumps(ships_json), )
 
 test_login()

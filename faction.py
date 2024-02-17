@@ -2,8 +2,7 @@
 # Faction Logic
 
 import requests
-import json
-import time
+
 
 def get_factions():
     factions = requests.get('https://api.spacetraders.io/v2/factions')

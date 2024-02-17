@@ -23,27 +23,27 @@
 </tr>
     <td><s>Create New Agent</s></td>
     <td><s>View Factions</s></td>
-    <td>View Contracts</td>
+    <td><s>View Contracts</s></td>
     <td>Orbiting and Docking</td>
     <td>Find Shipyard/Purchase Ship</td>
 <tr>
     <td><s>Login with access token</s></td>
     <td>Accept Faction Contract *WIP*</td>
-    <td>Accept Contract</td>
+    <td><s>Accept Contract</s></td>
     <td>Flight mode</td>
     <td>Surveying</td>
 </tr>
 <tr>
     <td>View Debug Log</td>
     <td>View MY Faction Rep</td>
-    <td>******</td>
+    <td><s>Deliver Contract Cargo</s></td>
     <td>Waypoint Navigation</td>
     <td>Extracting Resources</td>
 </tr>
 <tr>
     <td>******</td>
     <td>******</td>
-    <td>******</td>
+    <td><s>Fulfill Contract</s></td>
     <td>View Waypoint Traits</td>
     <td>List Ship Cargo</td>
 </tr>
