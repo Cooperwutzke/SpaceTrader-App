@@ -100,7 +100,7 @@ def supply_construction_site(system_symbol, waypoint_symbol, access_token, shipt
                "Authorization": "Bearer %s" % access_token,
                "Content-Type": "application/json"}
     data = shiptrade_json
-    response = requests.get(url, headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     
     if response.status_code == 200:
         return response.json()

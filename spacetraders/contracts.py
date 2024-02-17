@@ -21,7 +21,7 @@ def get_my_contracts(access_token):
 def accept_contract(contract_id, access_token):
     url = f"https://api.spacetraders.io/v2/my/contracts/{contract_id}/accept"
     headers = {"Authorization": "Bearer %s" % access_token}
-    response = requests.get(url, headers=headers)
+    response = requests.post(url, headers=headers)
     
     if response.status_code == 200:
         return response.json()
@@ -36,7 +36,7 @@ def deliver_cargo_contract(contract_id, access_token, shiptrade_json):
                "Authorization": "Bearer %s" % access_token,
                "Content-Type": "application/json"}
     data = shiptrade_json
-    response = requests.get(url, headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     
     if response.status_code == 200:
         return response.json()
@@ -50,7 +50,7 @@ def fulfill_contract(contract_id, access_token):
     headers = {"Accept": "application/json",
                "Authorization": "Bearer %s" % access_token,
                "Content-Type": "application/json"}
-    response = requests.get(url, headers=headers)
+    response = requests.post(url, headers=headers)
     
     if response.status_code == 200:
         return response.json()
