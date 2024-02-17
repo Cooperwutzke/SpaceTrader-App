@@ -9,12 +9,10 @@
 import logging
 import requests
 import json
-import faction
-import contracts
-import ship
+import glob
+import os
 
 logging.basicConfig(filename="history.log", encoding="utf-8", format="%(asctime)s | %(levelname)s: %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.INFO)
-current_player_token = {}
 
 #View some global element such as announcements, server reset dates, player count, and leaderboards
 def get_gameinfo():
@@ -47,18 +45,20 @@ def get_public_agent(agent_symbol):
         logging.debug("Failed to get agent's details: (status code %s)" % response.status_code)
         return None
 
-# Logging in is simply selecting which access token all of our functions will target
+# This should update our agent data file to reflect recent changes
 def get_my_agent(access_token):
+    agent_file = select_agent_file()
     myagent_response = requests.get(url="https://api.spacetraders.io/v2/my/agent",
                                     headers={"Accept": "application/json", 
                                              "Authorization": "Bearer %s" % access_token}) 
-    print(myagent_response.content)
-    try:
+    if myagent_response.status_code == 200:
         myagent_json = myagent_response.json()
-    except ValueError as e:
-        logging.debug("Invalid login token: %s" % access_token)
-    logging.info("Successful Login Token Check: %s" % access_token)
-    print("Successful Login Token Check: %s" % access_token)
+        print("Successful Login Token Check: %s" % access_token)
+        logging.info("Successful Login Token Check: %s" % access_token)
+        with open(agent_file, "w") as file:
+            json.dump(myagent_json, file)
+        return myagent_json
+
     return myagent_json
 
 
@@ -69,12 +69,35 @@ def new_agent(callsign, faction):
     newagent_response = requests.post(url="https://api.spacetraders.io/v2/register",
                                      headers={'Content-Type': "application/json"},
                                      json=payload)
-    print(newagent_response.status_code)
-    print(newagent_response.content)
     newagent_json = newagent_response.json()
 
-    filename = "%s_data.json" % callsign 
+    filename = "/agents/%s_data.json" % callsign 
     with open(filename, "w") as file:
         json.dump(newagent_json, file)
 
     logging.info("Agent File Created: %s" % filename)
+
+def select_agent_file():
+    directory = '/agents/'
+    json_files = glob.glob(os.path.join(directory, '*_data.json'))
+
+    if json_files:
+        print("Select a file by entering its number:")
+
+        # Display the files in a numbered list
+        for num, file in enumerate(json_files, start=1):
+            print(f"{num}: {os.path.basename(file)}")
+
+        # Take user input (note: input is 1-indexed by humans)
+        try:
+            selection = int(input("Enter number: ")) - 1  # Convert to 0-indexed
+            if 0 <= selection < len(json_files):
+                selected_file = json_files[selection]
+                print(f"You selected: {os.path.basename(selected_file)}")
+                return selected_file
+            else:
+                print("Invalid selection. Please enter a number from the list.")
+        except ValueError:
+            print("Please enter a valid number.")
+    else:
+        return -1
