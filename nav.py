@@ -61,7 +61,7 @@ def get_market(system_symbol, waypoint_symbol):
         logging.debug("Failed to get market details: %s | (status code %s)" % waypoint_symbol, response.status_code)
         return None
     
-def get_market(system_symbol, waypoint_symbol):
+def get_shipyard(system_symbol, waypoint_symbol):
     url = f"https://api.spacetraders.io/v2/systems/{system_symbol}/waypoints/{waypoint_symbol}/shipyard"
     response = requests.get(url)
     
