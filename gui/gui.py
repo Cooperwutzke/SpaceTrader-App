@@ -1,9 +1,10 @@
 # Cooper Wutzke
 # Custom GUI for Spacetraders.io
 
+import sys
 from tkinter import Tk, ttk
 from tkinter import StringVar
-from game import gamelogin, newagent, get_factions
+from spacetraders import game, faction, contracts, nav, ship
 
 def newagent_dialog():
     dialog = Tk()
