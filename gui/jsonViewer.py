@@ -1,71 +1,76 @@
-# Cooper Wutzke
-# JSON Viewer for basic API calls
-
 import tkinter as tk
 from tkinter import ttk
-import requests
-import json
 
-# Function to send HTTP request and display the response
-def send_request():
-    url = url_entry.get()
-    method = request_type.get()
-    try:
-        if method == "GET":
-            response = requests.get(url)
-        else:
-            response = requests.post(url)
-        response_json = response.json()
-        display_response(response_json)
-    except Exception as e:
-        response_tree.insert('', 'end', text="Error", values=(str(e),))
+class JsonViewer(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("JSON Viewer")
+        self.geometry("800x600")
 
-# Function to display JSON response in the treeview
-def display_response(response_json, parent=''):
-    for key, value in response_json.items():
-        if isinstance(value, dict):
-            node = response_tree.insert(parent, 'end', text=key, open=True)
-            display_response(value, node)
-        elif isinstance(value, list):
-            node = response_tree.insert(parent, 'end', text=key, open=True)
-            for i, item in enumerate(value):
-                if isinstance(item, dict):
-                    item_node = response_tree.insert(node, 'end', text=f"{key}[{i}]", open=True)
-                    display_response(item, item_node)
-                else:
-                    response_tree.insert(node, 'end', text=f"{key}[{i}]", values=(item,))
-        else:
-            response_tree.insert(parent, 'end', text=key, values=(value,))
+        # Notebook for each module section
+        self.notebook = ttk.Notebook(self)
+        self.notebook.pack(expand=True, fill="both")
 
-# Initialize main application window
-app = tk.Tk()
-app.title("HTTP Request GUI")
+        # Sections for each module
+        self.setup_game_section()
+        self.setup_faction_section()
+        self.setup_contracts_section()
+        self.setup_ship_section()
+        self.setup_nav_section()
 
-# URL entry
-url_frame = ttk.Frame(app)
-url_frame.pack(fill='x', padx=5, pady=5)
-url_label = ttk.Label(url_frame, text="URL:")
-url_label.pack(side='left')
-url_entry = ttk.Entry(url_frame)
-url_entry.pack(fill='x', expand=True)
+    def setup_game_section(self):
+        frame = ttk.Frame(self.notebook)
+        self.notebook.add(frame, text="Game")
+        # TODO: Place your Game module integration here
 
-# Request type selection
-request_type = tk.StringVar(value="GET")
-request_type_frame = ttk.Frame(app)
-request_type_frame.pack(fill='x', padx=5, pady=5)
-get_button = ttk.Radiobutton(request_type_frame, text="GET", variable=request_type, value="GET")
-get_button.pack(side='left')
-post_button = ttk.Radiobutton(request_type_frame, text="POST", variable=request_type, value="POST")
-post_button.pack(side='left')
+        # Example for the Game section
+        # def setup_game_section(self):
+        #     frame = ttk.Frame(self.notebook)
+        #     self.notebook.add(frame, text="Game")
 
-# Send button
-send_button = ttk.Button(app, text="Send Request", command=send_request)
-send_button.pack(fill='x', padx=5, pady=5)
+        #     ttk.Label(frame, text="Select Function:").pack(pady=(10, 0))
+        #     func_combobox = ttk.Combobox(frame, values=["Function1", "Function2"])  # Update values with your functions
+        #     func_combobox.pack(pady=(0, 10))
 
-# Response display (treeview)
-response_frame = ttk.Frame(app)
-response_frame.pack(fill='both', expand=True, padx=5, pady=5)
-response_tree = ttk.Treeview(response_frame, columns=('Value',), show="tree")
-response_tree.pack(fill='both', expand=True)
+        #     # Assuming Function1 requires one parameter
+        #     ttk.Label(frame, text="Parameter:").pack(pady=(10, 0))
+        #     param_entry = ttk.Entry(frame)
+        #     param_entry.pack(pady=(0, 10))
 
-app.mainloop()
+        #     run_button = ttk.Button(frame, text="Run", command=lambda: self.run_game_function(func_combobox.get(), param_entry.get()))
+        #     run_button.pack(pady=10)
+
+        #     # Response display (you might choose a more suitable widget based on your data)
+        #     self.response_text = tk.Text(frame, height=15)
+        #     self.response_text.pack(expand=True, fill="both", pady=(10, 0))
+
+        # def run_game_function(self, func_name, param):
+        #     # Placeholder for function execution logic
+        #     # You would call your module's function here and display the result in `self.response_text`
+        #     response = f"Executing {func_name} with parameter {param}"  # Placeholder response
+        #     self.response_text.insert('end', response + "\n")
+        
+
+    def setup_faction_section(self):
+        frame = ttk.Frame(self.notebook)
+        self.notebook.add(frame, text="Faction")
+        # TODO: Place your Faction module integration here
+
+    def setup_contracts_section(self):
+        frame = ttk.Frame(self.notebook)
+        self.notebook.add(frame, text="Contracts")
+        # TODO: Place your Contracts module integration here
+
+    def setup_ship_section(self):
+        frame = ttk.Frame(self.notebook)
+        self.notebook.add(frame, text="Ship")
+        # TODO: Place your Ship module integration here
+
+    def setup_nav_section(self):
+        frame = ttk.Frame(self.notebook)
+        self.notebook.add(frame, text="Nav")
+        # TODO: Place your Nav module integration here
+
+if __name__ == "__main__":
+    app = JsonViewer()
+    app.mainloop()
